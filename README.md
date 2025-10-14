@@ -1,41 +1,41 @@
 # CiencasDatos_UdeA_GIRAULT
 
-This repository contains my work for the course "Ciencas de Datos" at the University of Antioquia.
+Este repositorio contiene mi trabajo para el curso "Ciencias de Datos" en la Universidad de Antioquia.
 
-## Project: Hospital Length of Stay Prediction
+## Proyecto: Predicción de la duración de la estancia hospitalaria
 
-### Context and Motivation
+### Contexto y motivación
 
-Anticipating the duration of hospital stays is a major challenge for healthcare management, especially for optimizing bed availability and resource allocation. This project aims to predict the number of days a patient will remain hospitalized based on clinical and demographic variables, using real-world hospital data.
+Anticipar la duración de las estancias hospitalarias es un gran desafío para la gestión sanitaria, especialmente para optimizar la disponibilidad de camas y la asignación de recursos. Este proyecto busca predecir el número de días que un paciente permanecerá hospitalizado, utilizando variables clínicas y demográficas extraídas de datos hospitalarios reales.
 
-### Data Sources
+### Fuentes de datos
 
-- Main dataset: [Hospital Length of Stay Dataset (Microsoft, Kaggle)](https://www.kaggle.com/datasets/aayushchou/hospital-length-of-stay-dataset-microsoft)
-- Variables include: comorbidities (ICD-9), biological indicators (BMI, creatinine, BUN, respiration), gender, number of readmissions, and secondary diagnoses.
+- Conjunto de datos principal: [Hospital Length of Stay Dataset (Microsoft, Kaggle)](https://www.kaggle.com/datasets/aayushchou/hospital-length-of-stay-dataset-microsoft)
+- Las variables incluyen: comorbilidades (ICD-9), indicadores biológicos (IMC, creatinina, BUN, respiración), género, número de readmisiones y diagnósticos secundarios.
 
-### Methodology
+### Metodología
 
-- **Variable selection** guided by medical literature and data exploration.
-- **Data cleaning** to handle outliers and missing values.
-- **Descriptive analysis**: distributions, boxplots, and correlation matrices to understand variable behavior.
-- **Principal Component Analysis (PCA)** to reduce dimensionality and identify latent clinical axes.
-- **Clustering (K-means)** to reveal patient profiles based on clinical complexity.
+- **Selección de variables** guiada por literatura médica y exploración de datos.
+- **Limpieza de datos** para tratar valores atípicos y datos faltantes.
+- **Filtrado y análisis de outliers**: Los valores atípicos se detectan mediante métodos estadísticos (IQR, Z-score) y luego se revisan por relevancia clínica antes de decidir su inclusión o exclusión.
+- **Análisis descriptivo**: distribuciones, diagramas de caja y matrices de correlación para comprender el comportamiento de las variables.
+- **Análisis de Componentes Principales (PCA)** para reducir la dimensionalidad e identificar ejes clínicos latentes.
+- **Clustering (K-means)** para revelar perfiles de pacientes según la complejidad clínica.
 
-### First Results
+### Primeros resultados
 
-- **Comorbidities and readmissions** are the main drivers of longer hospital stays. Patients with more diagnoses or frequent readmissions tend to stay longer.
-- **Biological variables alone** (BMI, creatinine, BUN, respiration) do not sufficiently explain length of stay; multivariable approaches are necessary.
-- **PCA** shows that five principal components explain 88% of the variance, highlighting the multidimensional nature of hospital data (clinical load, renal function, respiration, secondary diagnoses, BMI).
-- **K-means clustering** (k=2) identifies two clear patient profiles: short, frequent stays vs. long, complex stays. More clusters do not add interpretability.
-- **Outliers** (especially in BUN and respiration) are often clinically relevant and should not be discarded without medical review.
+- **Comorbilidades y readmisiones** son los principales factores de estancias hospitalarias prolongadas. Los pacientes con más diagnósticos o readmisiones frecuentes tienden a permanecer más tiempo.
+- **Las variables biológicas por sí solas** (IMC, creatinina, BUN, respiración) no explican suficientemente la duración de la estancia; se requieren enfoques multivariables.
+- **PCA** muestra que cinco componentes principales explican el 88% de la varianza, destacando la naturaleza multidimensional de los datos hospitalarios (carga clínica, función renal, respiración, diagnósticos secundarios, IMC).
+- **Clustering K-means** (k=2) identifica dos perfiles claros de pacientes: estancias cortas y frecuentes vs. estancias largas y complejas. Más clusters no aportan interpretabilidad.
+- **Los outliers** (especialmente en BUN y respiración) suelen ser clínicamente relevantes y no deben descartarse sin revisión médica.
 
-### Next Steps
+### Próximos pasos
 
-- Enrich the dataset with additional variables (age, admission type, treatment duration).
-- Refine outlier management by combining statistical and clinical expertise.
-- Develop and compare supervised predictive models (regression, decision trees, neural networks).
-- Evaluate model performance and interpretability for practical hospital use.
+- Refinar la gestión de outliers combinando experiencia estadística y clínica.
+- Desarrollar y comparar modelos predictivos supervisados (regresión, árboles de decisión, redes neuronales).
+- Evaluar el rendimiento y la interpretabilidad de los modelos para su uso práctico en hospitales.
 
 ---
 
-This project lays the groundwork for robust predictive modeling in hospital management, combining statistical rigor and clinical insight to improve patient care and resource planning.
+Este proyecto sienta las bases para una modelización predictiva robusta en la gestión hospitalaria, combinando rigor estadístico y visión clínica para mejorar la atención al paciente y la planificación de recursos.
