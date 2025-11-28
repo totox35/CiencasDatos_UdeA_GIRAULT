@@ -30,11 +30,36 @@ Anticipar la duración de las estancias hospitalarias es un gran desafío para l
 - **Clustering K-means** (k=2) identifica dos perfiles claros de pacientes: estancias cortas y frecuentes vs. estancias largas y complejas. Más clusters no aportan interpretabilidad.
 - **Los outliers** (especialmente en BUN y respiración) suelen ser clínicamente relevantes y no deben descartarse sin revisión médica.
 
-### Próximos pasos
+### Fase 2: Refinamiento, Transformación y Estrategia de Modelado
 
-- Refinar la gestión de outliers combinando experiencia estadística y clínica.
-- Desarrollar y comparar modelos predictivos supervisados (regresión, árboles de decisión, redes neuronales).
-- Evaluar el rendimiento y la interpretabilidad de los modelos para su uso práctico en hospitales.
+En esta segunda etapa (Unidad 4), se evolucionó el proyecto desde un análisis descriptivo hacia una estrategia predictiva robusta, enfocada en la calidad del dato y la utilidad clínica.
+
+#### 1. Ingeniería de Características y Transformación
+Para mitigar el impacto de los valores atípicos (outliers) sin perder información clínica valiosa, se aplicaron transformaciones estadísticas avanzadas:
+- **Yeo-Johnson:** Aplicado a variables sesgadas como `bloodureanitro` y diagnósticos secundarios.
+- **RobustScaler:** Utilizado para `respiration`, garantizando que los valores extremos no distorsionen el modelo.
+- **Categorización:** La variable objetivo (*Length of Stay*) se discretizó en tres niveles de riesgo operativo: *Corto* (0-2 días), *Medio* (3-7 días) y *Largo* (+8 días).
+
+#### 2. Experimento de Manejo de Desbalance
+Se diseñó un experimento comparativo utilizando **Regresión Logística** bajo cuatro estrategias para abordar el fuerte desequilibrio de clases:
+1.  **Baseline:** Sin tratamiento.
+2.  **Class Weight:** Ponderación de costos en la función de pérdida.
+3.  **SMOTE:** Sobremuestreo sintético.
+4.  **Random UnderSampling (RUS):** Submuestreo aleatorio.
+
+#### 3. Resultados y Conclusión Ética
+El análisis reveló una tensión crítica entre la métrica global y la utilidad real:
+- El **Modelo Baseline** obtuvo el mejor *F1-Score* global (0.758), pero falló éticamente al ignorar a los pacientes de larga estancia (**Recall del 47%** en la clase "Largo").
+- Las estrategias de **Class Weight** y **SMOTE** sacrificaron levemente la precisión global para **elevar la detección de estancias largas al 84%**.
+
+**Decisión Final:** Desde una perspectiva de gestión hospitalaria responsable, se prioriza el modelo con **Class Weight**. Es preferible sobre-estimar la ocupación (falsos positivos) a no prever la falta de camas para pacientes críticos (falsos negativos).
+
+### Informe Académico
+
+El artículo completo que resume la metodología, el análisis detallado y las conclusiones de este estudio se encuentra disponible en el siguiente enlace:
+👉 [**Informe Final (PDF)**](articulo/informe_final_Thomas_GIRAULT.pdf)
+
+---
 
 ---
 
